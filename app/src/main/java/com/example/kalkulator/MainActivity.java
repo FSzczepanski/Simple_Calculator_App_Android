@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String operation = "";
-
+    public int equals;
     public void click(View view) throws Exception {
         TextView wynik = findViewById(R.id.operation);
-        int equals;
+
         switch (view.getId()) {
             case R.id.button9:
                 operation += "9";
@@ -99,6 +99,22 @@ public class MainActivity extends AppCompatActivity {
                 operation += "-";
                 wynik.setText(operation);
                 break;
+            case R.id.buttonMultiplication:
+                operation += "x";
+                wynik.setText(operation);
+                break;
+            case R.id.buttonDivide:
+                operation += "÷";
+                wynik.setText(operation);
+                break;
+            case R.id.buttonNawR:
+                operation += ")";
+                wynik.setText(operation);
+                break;
+            case R.id.buttonNawL:
+                operation += "(";
+                wynik.setText(operation);
+                break;
             case R.id.buttonEq:
 
                 wynik.setText(operation + "=");
@@ -124,11 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 eqal.setText(Integer.toString(equals));
                 break;
             case R.id.buttonClear:
-                operation = "";
-                equals = 0;
-                TextView eqal2 = findViewById(R.id.equals);
-                eqal2.setText("");
-                wynik.setText("");
+                clear();
                 break;
         }
 
@@ -144,6 +156,15 @@ public class MainActivity extends AppCompatActivity {
         }
         // only got here if we didn't return false
         return true;
+    }
+    public void clear(){
+        operation = "";
+        equals = 0;
+        TextView eqal2 = findViewById(R.id.equals);
+        TextView wynik = findViewById(R.id.operation);
+        eqal2.setText("");
+        wynik.setText("");
+
     }
 
 

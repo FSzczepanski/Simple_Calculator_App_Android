@@ -4,7 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     tools:context=".SecondFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="297dp"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonNawL"
+            android:layout_width="99dp"
+            android:layout_height="61dp"
+            android:onClick="click"
+            android:text="("
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/buttonNawR"
+            android:layout_width="99dp"
+            android:layout_height="61dp"
+            android:onClick="click"
+            android:text=")"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/buttonMultiplication"
+            android:layout_width="99dp"
+            android:layout_height="61dp"
+            android:onClick="click"
+            android:text="x"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/buttonDivide"
+            android:layout_width="99dp"
+            android:layout_height="61dp"
+            android:onClick="click"
+            android:text="÷"
+            android:textSize="23dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +60,7 @@
 
         <Button
             android:id="@+id/buttonClear"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="click"
@@ -25,17 +70,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="335dp"
+        android:layout_marginBottom="435dp"
         android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/equals"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="40dp" />
+            android:textSize="40sp"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp" />
 
         <Button
             android:id="@+id/buttonEq"
@@ -50,17 +96,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="500dp"
         android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/operation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:textSize="40dp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -134,7 +181,7 @@
 
         <Button
             android:id="@+id/buttonMinus"
-            android:layout_width="match_parent"
+            android:layout_width="99dp"
             android:layout_height="100dp"
             android:onClick="click"
             android:text="-"
@@ -153,6 +200,7 @@
 
         <Button
             android:id="@+id/button9"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="99dp"
             android:layout_height="100dp"
             android:onClick="click"
@@ -160,6 +208,7 @@
 
         <Button
             android:id="@+id/button8"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="99dp"
             android:layout_height="100dp"
             android:onClick="click"
@@ -174,7 +223,7 @@
 
         <Button
             android:id="@+id/buttonPlus"
-            android:layout_width="match_parent"
+            android:layout_width="99dp"
             android:layout_height="100dp"
             android:onClick="click"
             android:text="+"
