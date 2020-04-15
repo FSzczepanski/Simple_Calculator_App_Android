@@ -45,10 +45,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static double result;
+    //saves previous version of result, helps with multiplication
+    public static double previousResult;
+    public static double previousPreviousResult;
+
+
     public String operation = "";
-    public int equals;
+
     public void click(View view) throws Exception {
         TextView wynik = findViewById(R.id.operation);
+        TextView eqal = findViewById(R.id.equals);
+
 
         switch (view.getId()) {
             case R.id.button9:
@@ -94,18 +102,26 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buttonPlus:
                 operation += "+";
                 wynik.setText(operation);
+                functionResult(operation);
+                eqal.setText(String.valueOf(result));
                 break;
             case R.id.buttonMinus:
                 operation += "-";
                 wynik.setText(operation);
+                functionResult(operation);
+                eqal.setText(String.valueOf(result));
                 break;
             case R.id.buttonMultiplication:
                 operation += "x";
                 wynik.setText(operation);
+                functionResult(operation);
+                eqal.setText(String.valueOf(result));
                 break;
             case R.id.buttonDivide:
                 operation += "÷";
                 wynik.setText(operation);
+                functionResult(operation);
+                eqal.setText(String.valueOf(result));
                 break;
             case R.id.buttonNawR:
                 operation += ")";
@@ -116,50 +132,101 @@ public class MainActivity extends AppCompatActivity {
                 wynik.setText(operation);
                 break;
             case R.id.buttonEq:
-
-                wynik.setText(operation + "=");
-
-
-                String[] tab = operation.split("[+]");
-
-                equals = 0;
-                for (int i = 0; i < tab.length; i++) {
-                    if (!isInteger(tab[i])) {
-                        String[] tab2 = tab[i].split("-");
-
-                        int a = Integer.parseInt(tab2[0]);
-                        int b = Integer.parseInt(tab2[1]);
-                        equals = equals + a - b;
-                    } else {
-                        int a = Integer.parseInt(tab[i]);
-                        equals += a;
-                    }
-
-                }
-                TextView eqal = findViewById(R.id.equals);
-                eqal.setText(Integer.toString(equals));
+                String eoperation = operation + "=";
+                wynik.setText(eoperation);
+                functionResult(eoperation);
+                eqal.setText(String.valueOf(result));
                 break;
             case R.id.buttonClear:
                 clear();
                 break;
         }
-
     }
 
-    public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return false;
-        } catch (NullPointerException e) {
-            return false;
+    //2+3=
+    public String functionResult(String line) {
+        String[] tab = line.split("");
+        int number = tab.length;
+
+        if(number==4) {
+            double a = Double.parseDouble(tab[number - 4]);
+            double b = Double.parseDouble(tab[number - 2]);
+
+            if (tab[number - 3].equals("+")) {
+                previousResult = a;
+                result += a + b;
+            } else if (tab[number - 3].equals("-")) {
+                previousResult = a;
+                result += a - b;
+            } else if (tab[number - 3].equals("x")) {
+                result += a * b;
+                previousResult = result;
+            } else if (tab[number - 3].equals("÷")) {
+                result += a / b;
+                previousResult = result;
+            }
         }
-        // only got here if we didn't return false
-        return true;
+        else if(number >4) {
+        double a = Double.parseDouble(tab[number - 4]);
+        double b = Double.parseDouble(tab[number - 2]);
+        if (tab[number - 3].equals("+")) {
+            previousResult = result;
+            result += b;
+        } else if (tab[number - 3].equals("-")) {
+            previousResult = result;
+            result -= b;
+        }
+        //multiplication
+        else if (tab[number - 3].equals("x")) {
+
+            if (tab[number - 5].equals("x")) {
+                double c = Double.parseDouble(tab[number - 6]);
+                result = previousResult;
+                if (tab[number - 5].equals("-")) {
+                    result -= c * a * b;
+                } else {
+                    result += c * a * b;
+                }
+
+            } else {
+                result = previousResult;
+                if (tab[number - 5].equals("-")) {
+                    result -= a * b;
+                } else {
+                    result += a * b;
+                }
+            }
+            //division
+        } else if (tab[number - 3].equals("÷")) {
+
+            if (tab[number - 5].equals("÷")) {
+                double c = Double.parseDouble(tab[number - 6]);
+                result = previousResult;
+                if (tab[number - 5].equals("-")) {
+                    result -= c / a / b;
+                } else {
+                    result += c / a / b;
+                }
+
+            } else {
+                result = previousResult;
+                if (tab[number - 5].equals("-")) {
+                    result -= a / b;
+                } else {
+                    result += a / b;
+                }
+            }
+
+        }
     }
-    public void clear(){
+
+        return line;
+}
+
+
+    public void clear() {
         operation = "";
-        equals = 0;
+        result = 0;
         TextView eqal2 = findViewById(R.id.equals);
         TextView wynik = findViewById(R.id.operation);
         eqal2.setText("");
