@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
 
@@ -38,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        //xdxdxdzmiant
+        
         if (id == R.id.action_settings) {
             return true;
         }
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         if(number==4) {
             double a = Double.parseDouble(tab[number - 4]);
             double b = Double.parseDouble(tab[number - 2]);
-
+///////////////////////xd
             if (tab[number - 3].equals("+")) {
                 previousResult = a;
                 result += a + b;
